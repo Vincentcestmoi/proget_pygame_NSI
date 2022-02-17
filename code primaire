@@ -1,0 +1,72 @@
+import pygame, sys
+from pygame.locals import *
+from random import randint
+
+pygame.init()
+
+a = randint(0, 75)
+b = randint(0, 125)
+
+fenetre = pygame.display.set_mode((640, 480))
+fenetre.fill([250, a, b])
+
+perso = pygame.image.load("perso.png").convert_alpha()
+position_perso = perso.get_rect()
+fenetre.blit(perso, position_perso)
+pygame.display.flip()
+
+while True :
+    
+    pygame.key.set_repeat(75)
+        
+    for event in pygame.event.get():   
+        if event.type == KEYDOWN:
+            if event.key == K_RIGHT:
+               print("flèche droite appuyée")
+               position_perso[0] += 10
+               fenetre.fill([250, a, b])
+               fenetre.blit(perso, position_perso)
+               pygame.display.flip()
+               
+    for event in pygame.event.get():   
+        if event.type == KEYDOWN:
+            if event.key == K_LEFT:
+               print("flèche gauche appuyée")
+               position_perso[0] -= 10
+               fenetre.fill([250, a, b])
+               fenetre.blit(perso, position_perso)
+               pygame.display.flip()
+               
+    for event in pygame.event.get():   
+        if event.type == KEYDOWN:
+            if event.key == K_DOWN:
+               print("flèche bas appuyée")
+               position_perso[1] += 10
+               fenetre.fill([250, a, b])
+               fenetre.blit(perso, position_perso)
+               pygame.display.flip()
+               
+    for event in pygame.event.get():   
+        if event.type == KEYDOWN:
+            if event.key == K_UP:
+               print("flèche haut appuyée")
+               position_perso[1] -= 10
+               fenetre.fill([250, a, b])
+               fenetre.blit(perso, position_perso)
+               pygame.display.flip()
+               
+    for event in pygame.event.get():
+        if event.type == MOUSEBUTTONDOWN and event.button == 1 :
+            print("clic détecté")
+            position_perso.topleft = (pygame.mouse.get_pos())
+            fenetre.fill([250, a, b])
+            fenetre.blit(perso, position_perso)
+            pygame.display.flip()
+            
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.display.quit()
+            sys.exit()
+
+
+    pass
